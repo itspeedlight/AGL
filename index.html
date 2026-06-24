@@ -1935,10 +1935,10 @@
         line-height: 1.4;
       }
 
-      /* VALUES - 2-column grid looks cleaner than 1 col */
+      /* VALUES - clean vertical stack for mobile readability */
       .val-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .val-card {
@@ -2205,35 +2205,18 @@
 
     /* ===== SMALL PHONES (max-width: 480px) ===== */
     @media(max-width:480px) {
-      .val-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
+      /* VALUES - maintain centered card structure */
       .val-card {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        text-align: left;
-        gap: 16px;
-        padding: 18px 16px;
+        padding: 32px 24px;
       }
-
-      html[dir="rtl"] .val-card {
-        text-align: right;
-      }
-
       .val-icon-wrap {
-        margin: 0;
-        flex-shrink: 0;
+        margin: 0 auto 16px;
       }
-
       .val-card .val-name {
-        margin-bottom: 4px;
+        margin-bottom: 10px;
       }
-
       .val-card .val-desc {
-        font-size: .77rem;
+        font-size: .88rem;
       }
 
       .about-img {
