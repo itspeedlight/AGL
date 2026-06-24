@@ -1,0 +1,3174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AGL - Advanced Global Logistics provides world-class freight forwarding, warehousing, and supply chain solutions. Reliable international shipping, customs clearance, and real-time tracking.">
+  <meta name="keywords" content="logistics, shipping, freight forwarding, warehousing, supply chain, customs clearance, Egypt, international transport">
+  <title>AGL | Advanced Global Logistics – Trusted Supply Chain Solutions</title>
+  <!-- Google Fonts: Inter (EN) & Cairo (AR) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #1a1a2e;
+      --accent: #2e7d32;
+      --accent2: #2d5a8e;
+      --gray: #f7f7f7;
+      --text: #1a1a1a;
+      --muted: #666;
+      --ease: cubic-bezier(.4, 0, .2, 1);
+    }
+
+    html {
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #fff;
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    html.en body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+    }
+
+    /* TYPOGRAPHY REFINEMENT */
+    h1, h2, h3, h4, .sec-title, .hero-h1 {
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    html:not(.en) .sec-title, html:not(.en) .hero-h1, html:not(.en) .at {
+      letter-spacing: 0;
+      line-height: 1.4;
+    }
+
+    p, .sec-sub, .srv-desc, .val-desc {
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    .at {
+      font-size: 1.05em; /* Arabic often needs a slight boost to match Latin visual weight */
+    }
+
+    html.en .et {
+      font-size: 1em;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      height: 100px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: box-shadow .4s;
+    }
+
+    nav.scrolled {
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-logo {
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      position: relative;
+      left: 40px;
+    }
+
+    html.en .nav-links {
+      left: -60px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      transition: all .25s;
+      position: relative;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      right: 50%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: all .3s var(--ease);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      left: 12px;
+      right: 12px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .lang-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: all .25s;
+      letter-spacing: .5px;
+    }
+
+    .lang-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    /* SCROLL PROGRESS */
+    #prog {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      z-index: 999;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width .08s linear;
+    }
+
+    /* ===== CURTAIN TRANSITION ===== */
+    #curtain {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .curtain-strip {
+      flex: 1;
+      background: var(--primary);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform .42s var(--ease);
+    }
+
+    #curtain.going .curtain-strip {
+      transform: scaleY(1);
+    }
+
+    #curtain.going .curtain-strip:nth-child(1) {
+      transition-delay: 0s;
+    }
+
+    #curtain.going .curtain-strip:nth-child(2) {
+      transition-delay: .05s;
+    }
+
+    #curtain.going .curtain-strip:nth-child(3) {
+      transition-delay: .1s;
+    }
+
+    #curtain.leaving .curtain-strip {
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform .4s var(--ease);
+    }
+
+    #curtain.leaving .curtain-strip:nth-child(1) {
+      transition-delay: .08s;
+    }
+
+    #curtain.leaving .curtain-strip:nth-child(2) {
+      transition-delay: .04s;
+    }
+
+    #curtain.leaving .curtain-strip:nth-child(3) {
+      transition-delay: 0s;
+    }
+
+    /* ===== REVEAL ANIMATIONS (SMOOTH UPWARD SLIDE) ===== */
+    .rv {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .rv.on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rvl {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .rvl.on {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .rvr {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .rvr.on {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .rvs {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .rvs.on {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .d1 {
+      transition-delay: .1s !important;
+    }
+
+    .d2 {
+      transition-delay: .2s !important;
+    }
+
+    .d3 {
+      transition-delay: .3s !important;
+    }
+
+    .d4 {
+      transition-delay: .4s !important;
+    }
+
+    .d5 {
+      transition-delay: .5s !important;
+    }
+
+    .d6 {
+      transition-delay: .6s !important;
+    }
+
+    /* ===== COMMON SECTION ===== */
+    section {
+      padding: 110px 5% 90px;
+    }
+
+    .sec-tag {
+      display: inline-block;
+      background: rgba(46, 125, 50, .12);
+      color: var(--accent);
+      border: 1px solid rgba(46, 125, 50, .35);
+      padding: 5px 18px;
+      border-radius: 100px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .sec-title {
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .sec-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-weight: 450;
+    }
+
+    .sec-head {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    /* ===== CAROUSEL / HOME ===== */
+    #home {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      background: var(--primary);
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.75;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
+    }
+
+    .hero-body {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8%;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      margin-bottom: 32px;
+      width: fit-content;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 10px #4ade80;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .4;
+        transform: scale(1.6);
+      }
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, .3);
+    }
+
+    .hero-h1 .hl {
+      color: var(--accent);
+    }
+
+    .hero-p {
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, .85);
+      max-width: 620px;
+      line-height: 1.7;
+      margin-bottom: 44px;
+      font-weight: 400;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-g {
+      background: var(--accent);
+      color: var(--primary);
+      padding: 16px 40px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .3s var(--ease);
+      text-decoration: none;
+      display: inline-block;
+      letter-spacing: .5px;
+    }
+
+    .btn-g:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(46, 125, 50, .5);
+    }
+
+    .btn-w {
+      background: transparent;
+      color: #fff;
+      padding: 15px 36px;
+      border: 2px solid rgba(255, 255, 255, .45);
+      border-radius: 12px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-w:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, .1);
+    }
+
+    /* STATS BAR at bottom */
+    .stats-row {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      background: rgba(15, 17, 35, .72);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      padding: 24px 5%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-col {
+      text-align: center;
+      padding: 0 16px;
+      border-right: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    html.en .stat-col {
+      border-right: none;
+      border-left: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .stat-col:last-child {
+      border: none;
+    }
+
+    .stat-n {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-l {
+      font-size: .76rem;
+      color: rgba(255, 255, 255, .6);
+      margin-top: 6px;
+      letter-spacing: .5px;
+    }
+
+    /* NAV ARROWS */
+    .cr-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 4;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .25);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s;
+    }
+
+    .cr-arrow:hover {
+      background: rgba(46, 125, 50, .35);
+      border-color: var(--accent);
+    }
+
+    .cr-arrow svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .cr-prev {
+      right: 24px;
+    }
+
+    .cr-next {
+      left: 24px;
+    }
+
+    html.en .cr-prev {
+      right: auto;
+      left: 24px;
+    }
+
+    html.en .cr-next {
+      left: auto;
+      right: 24px;
+    }
+
+    /* DOTS */
+    .cr-dots {
+      position: absolute;
+      bottom: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      gap: 8px;
+    }
+
+    .cr-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .35);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all .35s;
+    }
+
+    .cr-dot.active {
+      background: var(--accent);
+      width: 26px;
+      border-radius: 4px;
+    }
+
+    /* SCROLL ARROW */
+    .scroll-hint {
+      position: absolute;
+      bottom: 88px;
+      right: 5%;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    html.en .scroll-hint {
+      right: auto;
+      left: 5%;
+    }
+
+    .s-arrow {
+      width: 22px;
+      height: 22px;
+      border-right: 2px solid rgba(255, 255, 255, .4);
+      border-bottom: 2px solid rgba(255, 255, 255, .4);
+      transform: rotate(45deg);
+      animation: ab 1.8s infinite;
+    }
+
+    @keyframes ab {
+
+      0%,
+      100% {
+        transform: rotate(45deg) translate(0, 0);
+      }
+
+      50% {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+    }
+
+    /* ===== SERVICES ===== */
+    #services {
+      background: #fff;
+    }
+
+    .srv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .srv-card {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #ebebeb;
+      transition: all .45s var(--ease);
+      position: relative;
+    }
+
+    .srv-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 28px 64px rgba(26, 26, 46, .14);
+      border-color: transparent;
+    }
+
+    .srv-img {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .srv-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .65s var(--ease);
+    }
+
+    .srv-card:hover .srv-img img {
+      transform: scale(1.09);
+    }
+
+    .srv-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 26, 46, .5) 0%, transparent 60%);
+    }
+
+    .srv-body {
+      padding: 28px 26px;
+    }
+
+    .srv-num {
+      font-size: .7rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 2.5px;
+      margin-bottom: 10px;
+    }
+
+    .srv-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .srv-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .srv-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .srv-tag {
+      background: rgba(46, 125, 50, .1);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: .71rem;
+      font-weight: 600;
+      letter-spacing: .3px;
+    }
+
+    /* ===== EXPERIENCE ===== */
+    #experience {
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .exp-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/WhatsApp Image 2026-06-19 at 23.52.26.jpeg') center/cover no-repeat;
+    }
+
+    .exp-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(26, 26, 46, .94) 38%, rgba(26, 26, 46, .6) 100%);
+    }
+
+    .exp-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 120px 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .exp-left .sec-title {
+      color: #fff;
+    }
+
+    .exp-left .sec-sub {
+      color: rgba(255, 255, 255, .7);
+      text-align: right;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    html.en .exp-left .sec-sub {
+      text-align: left;
+    }
+
+    .exp-nums {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .exp-box {
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 16px;
+      padding: 28px 22px;
+      transition: all .4s var(--ease);
+    }
+
+    .exp-box:hover {
+      background: rgba(46, 125, 50, .15);
+      border-color: rgba(46, 125, 50, .4);
+      transform: translateY(-4px);
+    }
+
+    .exp-box .en {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .exp-box .el {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .65);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* ===== VALUES ===== */
+    #values {
+      background: var(--gray);
+    }
+
+    .val-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .val-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 36px 24px;
+      border: 1px solid #ebebeb;
+      text-align: center;
+      transition: all .4s var(--ease);
+    }
+
+    .val-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(26, 26, 46, .1);
+      border-color: var(--accent);
+    }
+
+    .val-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: rgba(46, 125, 50, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      transition: background .4s;
+    }
+
+    .val-card:hover .val-icon-wrap {
+      background: var(--accent);
+    }
+
+    .val-icon-wrap svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent);
+      stroke-width: 1.8;
+      fill: none;
+      transition: stroke .4s;
+    }
+
+    .val-card:hover .val-icon-wrap svg {
+      stroke: var(--primary);
+    }
+
+    .val-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .val-desc {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ===== QUOTE ===== */
+    #quote {
+      background: var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #quote::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(46, 125, 50, .06);
+      pointer-events: none;
+    }
+
+    .quote-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .quote-left .sec-title {
+      color: #fff;
+    }
+
+    .quote-left .sec-sub {
+      color: rgba(255, 255, 255, .65);
+      text-align: right;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    html.en .quote-left .sec-sub {
+      text-align: left;
+    }
+
+    .perks {
+      list-style: none;
+      margin-top: 36px;
+    }
+
+    .perks li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      font-size: .92rem;
+      color: rgba(255, 255, 255, .78);
+    }
+
+    .perks li:last-child {
+      border: none;
+    }
+
+    .perk-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .q-form {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 22px;
+      padding: 44px 40px;
+      backdrop-filter: blur(12px);
+    }
+
+    .q-form-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .fg {
+      margin-bottom: 16px;
+    }
+
+    .fg label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .65);
+      margin-bottom: 7px;
+      letter-spacing: .3px;
+    }
+
+    .fg input,
+    .fg select,
+    .fg textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 10px;
+      color: #fff;
+      font-size: .9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .25s, background .25s;
+    }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: rgba(255, 255, 255, .28);
+    }
+
+    .fg input:focus,
+    .fg select:focus,
+    .fg textarea:focus {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, .12);
+    }
+
+    .fg select option {
+      background: #1a1a2e;
+    }
+
+    .fg textarea {
+      height: 96px;
+      resize: vertical;
+    }
+
+    .fg-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .qsub {
+      width: 100%;
+      padding: 15px;
+      margin-top: 6px;
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      letter-spacing: .5px;
+      transition: all .3s;
+    }
+
+    .qsub:hover {
+      background: #4caf50;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(46, 125, 50, .4);
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      background: var(--gray);
+    }
+
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-img-side {
+      position: relative;
+    }
+
+    .about-img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+
+    .about-img-side::before {
+      content: '';
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--accent);
+      border-radius: 22px;
+      z-index: -1;
+    }
+
+    html.en .about-img-side::before {
+      right: auto;
+      left: -18px;
+    }
+
+    .about-stamp {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      background: var(--primary);
+      border-radius: 16px;
+      padding: 18px 24px;
+      border-right: 4px solid var(--accent);
+    }
+
+    html.en .about-stamp {
+      left: auto;
+      right: 32px;
+      border-right: none;
+      border-left: 4px solid var(--accent);
+    }
+
+    .about-stamp .big {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .about-stamp .sm {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .7);
+      margin-top: 4px;
+    }
+
+    .about-txt .sec-head {
+      text-align: right;
+      margin-bottom: 28px;
+    }
+
+    html.en .about-txt .sec-head {
+      text-align: left;
+    }
+
+    .about-txt .sec-sub {
+      text-align: right;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    html.en .about-txt .sec-sub {
+      text-align: left;
+    }
+
+    .checks {
+      list-style: none;
+      margin-top: 28px;
+    }
+
+    .checks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid #e8e8e8;
+      font-size: .9rem;
+      color: var(--text);
+    }
+
+    .checks li:last-child {
+      border: none;
+    }
+
+    .ck {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(46, 125, 50, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .ck svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--accent);
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      background: #fff;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 72px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .ci {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
+
+    .ci-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(46, 125, 50, .1);
+      border: 1px solid rgba(46, 125, 50, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ci-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent);
+      stroke-width: 1.8;
+      fill: none;
+    }
+
+    .ci h4 {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .ci p {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .c-form {
+      background: var(--gray);
+      border-radius: 22px;
+      padding: 44px;
+      border: 1px solid #eee;
+    }
+
+    .cf-g {
+      margin-bottom: 18px;
+    }
+
+    .cf-g label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 7px;
+      letter-spacing: .3px;
+    }
+
+    .cf-g input,
+    .cf-g textarea,
+    .cf-g select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #ddd;
+      border-radius: 11px;
+      font-size: .9rem;
+      background: #fff;
+      transition: border-color .25s, box-shadow .25s;
+      font-family: inherit;
+      color: var(--text);
+      outline: none;
+    }
+
+    .cf-g input:focus,
+    .cf-g textarea:focus,
+    .cf-g select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, .15);
+    }
+
+    .cf-g textarea {
+      height: 110px;
+      resize: vertical;
+    }
+
+    .cf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .csub {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .3s;
+      letter-spacing: .5px;
+    }
+
+    .csub:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(45, 90, 142, .3);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--primary);
+      padding: 40px 5% 30px;
+      position: relative;
+    }
+
+    .foot-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .foot-logo img {
+      height: 220px;
+      width: auto;
+      margin: -40px 0;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .foot-logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .foot-brand p {
+      font-size: .95rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.7;
+      max-width: 340px;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-link {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .social-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: #fff;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    footer h5 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    footer ul li {
+      margin-bottom: 8px;
+    }
+
+    footer ul li a {
+      color: rgba(255, 255, 255, .5);
+      text-decoration: none;
+      font-size: .84rem;
+      transition: all .3s;
+    }
+
+    footer ul li a:hover {
+      color: var(--accent);
+    }
+
+    .foot-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .85rem;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    @media(max-width:768px) {
+      .foot-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+
+    /* ===== LANGUAGE ===== */
+    .at {
+      display: block;
+    }
+
+    .et {
+      display: none;
+    }
+
+    html.en .at {
+      display: none;
+    }
+
+    html.en .et {
+      display: block;
+    }
+
+    html.en {
+      direction: ltr;
+    }
+
+    /* ===== NAV LOGO (all screens) ===== */
+    .nav-logo img {
+      height: 240px;
+      width: auto;
+      position: relative;
+      right: 40px;
+      margin: -70px 0;
+      transition: transform 0.3s var(--ease);
+      display: block;
+    }
+
+    html.en .nav-logo img {
+      right: auto;
+      left: 100px;
+    }
+
+    .nav-logo img:hover {
+      transform: scale(1.1);
+    }
+
+    /* ===== HAMBURGER MENU ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: all .3s var(--ease);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
+
+    /* ===== TABLET (max-width: 1024px) ===== */
+    @media(max-width:1024px) {
+      nav {
+        height: 80px;
+        padding: 0 4%;
+      }
+
+      #prog {
+        top: 80px;
+      }
+
+      .nav-logo img {
+        height: 200px;
+        right: 15px;
+        margin: -60px 0;
+      }
+
+      html.en .nav-logo img {
+        left: 50px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        left: auto;
+        width: 280px;
+        height: 100vh;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 100px 32px 40px;
+        gap: 0;
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
+        transition: right .4s var(--ease);
+        z-index: 1000;
+        align-items: stretch;
+      }
+
+      html[dir="rtl"] .nav-links {
+        right: auto;
+        left: -100%;
+        transition: left .4s var(--ease);
+        box-shadow: 8px 0 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      html[dir="rtl"] .nav-links.open {
+        left: 0;
+      }
+
+      html.en .nav-links {
+        left: auto;
+        right: -100%;
+      }
+
+      html.en .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links a {
+        padding: 14px 8px;
+        font-size: 1.05rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .lang-btn {
+        margin-top: 16px;
+        align-self: flex-start;
+      }
+
+      /* Mobile overlay when menu open */
+      .nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 999;
+      }
+
+      .nav-overlay.show {
+        display: block;
+      }
+
+      section {
+        padding: 80px 5% 60px;
+      }
+
+      .sec-head {
+        margin-bottom: 48px;
+      }
+
+      #home {
+        min-height: 100vh;
+      }
+
+      .hero-body {
+        padding: 0 5%;
+      }
+
+      .hero-h1 {
+        font-size: clamp(2rem, 4.5vw, 4rem);
+      }
+
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 18px 4%;
+      }
+
+      .stat-n {
+        font-size: 1.8rem;
+      }
+
+      .cr-dots {
+        bottom: 100px;
+      }
+
+      .scroll-hint {
+        bottom: 78px;
+      }
+
+      .srv-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      .val-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .exp-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 80px 5%;
+      }
+
+      .quote-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .about-wrap {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .contact-wrap {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .about-img {
+        height: 380px;
+      }
+
+      .about-img-side::before {
+        display: none;
+      }
+
+      html.en .about-img-side::before {
+        display: none;
+      }
+
+      .q-form {
+        padding: 32px 28px;
+      }
+
+      .c-form {
+        padding: 32px 28px;
+      }
+
+      .foot-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+    }
+
+    /* ===== MOBILE (max-width: 640px) ===== */
+    @media(max-width:640px) {
+      nav {
+        height: 64px;
+        padding: 0 16px;
+      }
+
+      #prog {
+        top: 64px;
+      }
+
+      .nav-logo img {
+        height: 180px;
+        right: 0;
+        margin: -58px 0;
+      }
+
+      html.en .nav-logo img {
+        left: 0;
+        right: auto;
+      }
+
+      .hamburger {
+        width: 32px;
+        height: 32px;
+        gap: 4px;
+      }
+
+      .hamburger span {
+        height: 2px;
+      }
+
+      .nav-links {
+        width: 75vw;
+        max-width: 280px;
+        padding: 80px 24px 32px;
+      }
+
+      section {
+        padding: 56px 20px 48px;
+      }
+
+      .sec-head {
+        margin-bottom: 32px;
+      }
+
+      .sec-title {
+        font-size: clamp(1.45rem, 5.5vw, 2rem);
+      }
+
+      .sec-sub {
+        font-size: .88rem;
+        line-height: 1.7;
+      }
+
+      .sec-tag {
+        font-size: .68rem;
+        padding: 4px 14px;
+        letter-spacing: 1.5px;
+      }
+
+      /* HERO - properly centered with room for buttons */
+      #home {
+        min-height: 100svh;
+      }
+
+      .hero-body {
+        padding: 0 20px;
+        justify-content: center;
+        padding-bottom: 140px;
+        /* space for stats bar */
+      }
+
+      .hero-pill {
+        font-size: .62rem;
+        padding: 5px 14px;
+        margin-bottom: 16px;
+      }
+
+      .hero-h1 {
+        font-size: clamp(1.65rem, 6.8vw, 2.6rem);
+        margin-bottom: 14px;
+        line-height: 1.15;
+      }
+
+      .hero-p {
+        font-size: .88rem;
+        margin-bottom: 24px;
+        line-height: 1.7;
+        max-width: 100%;
+      }
+
+      .hero-btns {
+        gap: 10px;
+      }
+
+      .btn-g {
+        padding: 12px 22px;
+        font-size: .84rem;
+        border-radius: 10px;
+      }
+
+      .btn-w {
+        padding: 12px 22px;
+        font-size: .84rem;
+        border-radius: 10px;
+      }
+
+      /* STATS BAR - clean compact 2x2 */
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+        padding: 12px 16px;
+        gap: 0;
+      }
+
+      .stat-col {
+        padding: 10px 8px;
+      }
+
+      .stat-n {
+        font-size: 1.35rem;
+      }
+
+      .stat-l {
+        font-size: .62rem;
+        letter-spacing: .3px;
+      }
+
+      .cr-dots {
+        bottom: 88px;
+      }
+
+      .scroll-hint {
+        display: none;
+      }
+
+      .cr-arrow {
+        width: 36px;
+        height: 36px;
+      }
+
+      .cr-arrow svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .cr-prev {
+        right: 12px;
+      }
+
+      .cr-next {
+        left: 12px;
+      }
+
+      html.en .cr-prev {
+        left: 12px;
+      }
+
+      html.en .cr-next {
+        right: 12px;
+      }
+
+      /* SERVICES - cleaner single column cards */
+      .srv-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .srv-card {
+        border-radius: 16px;
+      }
+
+      .srv-card:hover {
+        transform: none;
+      }
+
+      /* disable hover transform on touch */
+      .srv-img {
+        height: 190px;
+      }
+
+      .srv-body {
+        padding: 20px;
+      }
+
+      .srv-num {
+        font-size: .65rem;
+        margin-bottom: 8px;
+      }
+
+      .srv-name {
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      .srv-desc {
+        font-size: .83rem;
+        line-height: 1.7;
+      }
+
+      .srv-tags {
+        gap: 6px;
+        margin-top: 14px;
+      }
+
+      .srv-tag {
+        font-size: .68rem;
+        padding: 4px 10px;
+      }
+
+      /* EXPERIENCE - better grid for mobile */
+      .exp-inner {
+        padding: 48px 20px;
+      }
+
+      .exp-left .sec-sub {
+        font-size: .88rem;
+      }
+
+      .exp-nums {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .exp-box {
+        padding: 18px 14px;
+        border-radius: 14px;
+      }
+
+      .exp-box:hover {
+        transform: none;
+      }
+
+      .exp-box .en {
+        font-size: 1.85rem;
+      }
+
+      .exp-box .el {
+        font-size: .73rem;
+        line-height: 1.4;
+      }
+
+      /* VALUES - 2-column grid looks cleaner than 1 col */
+      .val-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .val-card {
+        padding: 22px 14px;
+        border-radius: 14px;
+      }
+
+      .val-card:hover {
+        transform: none;
+      }
+
+      .val-icon-wrap {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        margin-bottom: 14px;
+      }
+
+      .val-icon-wrap svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .val-name {
+        font-size: .92rem;
+        margin-bottom: 8px;
+      }
+
+      .val-desc {
+        font-size: .78rem;
+        line-height: 1.65;
+      }
+
+      /* QUOTE FORM - clean full-width */
+      .quote-inner {
+        gap: 32px;
+      }
+
+      .q-form {
+        padding: 24px 20px;
+        border-radius: 16px;
+      }
+
+      .q-form-title {
+        font-size: .95rem;
+        margin-bottom: 20px;
+        padding-bottom: 14px;
+      }
+
+      .fg {
+        margin-bottom: 14px;
+      }
+
+      .fg label {
+        font-size: .76rem;
+        margin-bottom: 6px;
+      }
+
+      .fg-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .fg input,
+      .fg select,
+      .fg textarea {
+        padding: 11px 14px;
+        font-size: .86rem;
+        border-radius: 10px;
+      }
+
+      .fg textarea {
+        height: 88px;
+      }
+
+      .qsub {
+        padding: 13px;
+        font-size: .9rem;
+        border-radius: 10px;
+      }
+
+      .perks {
+        margin-top: 24px;
+      }
+
+      .perks li {
+        font-size: .84rem;
+        padding: 9px 0;
+        gap: 10px;
+      }
+
+      .perk-dot {
+        width: 6px;
+        height: 6px;
+      }
+
+      /* ABOUT - cleaner layout */
+      .about-wrap {
+        gap: 28px;
+      }
+
+      .about-img {
+        height: 240px;
+        border-radius: 14px;
+      }
+
+      .about-img-side::before {
+        display: none;
+      }
+
+      html.en .about-img-side::before {
+        display: none;
+      }
+
+      .about-stamp {
+        bottom: 16px;
+        left: 16px;
+        padding: 12px 16px;
+        border-radius: 10px;
+      }
+
+      html.en .about-stamp {
+        left: auto;
+        right: 16px;
+      }
+
+      .about-stamp .big {
+        font-size: 1.5rem;
+      }
+
+      .about-stamp .sm {
+        font-size: .68rem;
+      }
+
+      .about-txt .sec-head {
+        margin-bottom: 18px;
+      }
+
+      .checks {
+        margin-top: 20px;
+      }
+
+      .checks li {
+        padding: 10px 0;
+        font-size: .84rem;
+        gap: 10px;
+      }
+
+      .ck {
+        width: 20px;
+        height: 20px;
+      }
+
+      .ck svg {
+        width: 10px;
+        height: 10px;
+      }
+
+      /* CONTACT - clean cards */
+      .contact-wrap {
+        gap: 32px;
+      }
+
+      .ci {
+        margin-bottom: 22px;
+        gap: 14px;
+      }
+
+      .ci-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+      }
+
+      .ci-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .ci h4 {
+        font-size: .72rem;
+        margin-bottom: 3px;
+      }
+
+      .ci p {
+        font-size: .88rem;
+      }
+
+      .cf-row {
+        grid-template-columns: 1fr;
+      }
+
+      .c-form {
+        padding: 24px 20px;
+        border-radius: 14px;
+      }
+
+      .cf-g {
+        margin-bottom: 14px;
+      }
+
+      .cf-g label {
+        font-size: .76rem;
+        margin-bottom: 6px;
+      }
+
+      .cf-g input,
+      .cf-g textarea,
+      .cf-g select {
+        padding: 11px 14px;
+        font-size: .86rem;
+        border-radius: 10px;
+      }
+
+      .cf-g textarea {
+        height: 100px;
+      }
+
+      .csub {
+        padding: 14px;
+        font-size: .9rem;
+        border-radius: 10px;
+      }
+
+      /* FOOTER - compact and clean */
+      .foot-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 32px;
+      }
+
+      footer {
+        padding: 40px 20px 20px;
+      }
+
+      .foot-logo img {
+        height: 150px;
+        margin: -30px 0;
+      }
+
+      .foot-brand p {
+        max-width: 100%;
+        font-size: .82rem;
+      }
+
+      footer h5 {
+        font-size: .84rem;
+        margin-bottom: 14px;
+      }
+
+      footer ul li {
+        margin-bottom: 8px;
+      }
+
+      footer ul li a {
+        font-size: .82rem;
+      }
+
+      .foot-bottom {
+        font-size: .7rem;
+        padding-top: 18px;
+      }
+    }
+
+    /* ===== SMALL PHONES (max-width: 480px) ===== */
+    @media(max-width:480px) {
+      .val-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .val-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 16px;
+        padding: 18px 16px;
+      }
+
+      html[dir="rtl"] .val-card {
+        text-align: right;
+      }
+
+      .val-icon-wrap {
+        margin: 0;
+        flex-shrink: 0;
+      }
+
+      .val-card .val-name {
+        margin-bottom: 4px;
+      }
+
+      .val-card .val-desc {
+        font-size: .77rem;
+      }
+
+      .about-img {
+        height: 200px;
+      }
+
+      .exp-nums {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .exp-box {
+        padding: 16px 12px;
+      }
+
+      .exp-box .en {
+        font-size: 1.7rem;
+      }
+
+      .exp-box .el {
+        font-size: .7rem;
+      }
+    }
+
+    /* ===== VERY SMALL DEVICES (max-width: 380px) ===== */
+    @media(max-width:380px) {
+      nav {
+        padding: 0 12px;
+        height: 58px;
+      }
+
+      #prog {
+        top: 58px;
+      }
+
+      .nav-logo img {
+        height: 160px;
+        right: 0;
+        margin: -51px 0;
+      }
+
+      html.en .nav-logo img {
+        left: 0;
+      }
+
+      .nav-links {
+        padding: 72px 20px 28px;
+      }
+
+      section {
+        padding: 48px 16px 40px;
+      }
+
+      .sec-head {
+        margin-bottom: 26px;
+      }
+
+      .sec-title {
+        font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+      }
+
+      .sec-sub {
+        font-size: .84rem;
+      }
+
+      .hero-body {
+        padding: 0 16px;
+        padding-bottom: 130px;
+      }
+
+      .hero-pill {
+        font-size: .58rem;
+        padding: 4px 12px;
+        margin-bottom: 14px;
+      }
+
+      .hero-h1 {
+        font-size: clamp(1.35rem, 6.2vw, 2rem);
+        margin-bottom: 12px;
+      }
+
+      .hero-p {
+        font-size: .82rem;
+        margin-bottom: 20px;
+        line-height: 1.65;
+      }
+
+      .btn-g,
+      .btn-w {
+        padding: 10px 18px;
+        font-size: .8rem;
+        border-radius: 8px;
+      }
+
+      .stats-row {
+        padding: 10px 12px;
+      }
+
+      .stat-col {
+        padding: 8px 6px;
+      }
+
+      .stat-n {
+        font-size: 1.15rem;
+      }
+
+      .stat-l {
+        font-size: .56rem;
+      }
+
+      .srv-body {
+        padding: 16px;
+      }
+
+      .srv-img {
+        height: 160px;
+      }
+
+      .exp-inner {
+        padding: 40px 16px;
+      }
+
+      .exp-box .en {
+        font-size: 1.5rem;
+      }
+
+      .exp-box .el {
+        font-size: .66rem;
+      }
+
+      .exp-box {
+        padding: 14px 10px;
+        border-radius: 12px;
+      }
+
+      .q-form {
+        padding: 20px 16px;
+      }
+
+      .fg input,
+      .fg select,
+      .fg textarea {
+        padding: 10px 12px;
+        font-size: .84rem;
+      }
+
+      .c-form {
+        padding: 20px 16px;
+      }
+
+      .cf-g input,
+      .cf-g textarea,
+      .cf-g select {
+        padding: 10px 12px;
+        font-size: .84rem;
+      }
+
+      .about-img {
+        height: 180px;
+        border-radius: 12px;
+      }
+
+      .about-stamp {
+        bottom: 12px;
+        left: 12px;
+        padding: 10px 14px;
+        border-radius: 8px;
+      }
+
+      html.en .about-stamp {
+        right: 12px;
+      }
+
+      .about-stamp .big {
+        font-size: 1.3rem;
+      }
+
+      .about-stamp .sm {
+        font-size: .62rem;
+      }
+
+      .checks li {
+        font-size: .8rem;
+        padding: 8px 0;
+      }
+
+      .ci {
+        margin-bottom: 18px;
+        gap: 12px;
+      }
+
+      .ci-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+      }
+
+      .ci-icon svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .ci h4 {
+        font-size: .68rem;
+      }
+
+      .ci p {
+        font-size: .82rem;
+      }
+
+      footer {
+        padding: 36px 16px 18px;
+      }
+
+      .foot-inner {
+        gap: 24px;
+        margin-bottom: 28px;
+      }
+
+      .foot-logo img {
+        height: 120px;
+      }
+
+      .foot-brand p {
+        font-size: .78rem;
+      }
+
+      .foot-bottom {
+        font-size: .66rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="curtain">
+    <div class="curtain-strip"></div>
+    <div class="curtain-strip"></div>
+    <div class="curtain-strip"></div>
+  </div>
+  <div id="prog"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#home" class="nav-logo" onclick="go(event,'#home')">
+      <img src="logo/WhatsApp_Image_2026-06-19_at_23.47.25-removebg-preview.png" alt="AGL">
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" onclick="go(event,'#home')"><span class="at">الرئيسية</span><span class="et">Home</span></a>
+      <a href="#services" onclick="go(event,'#services')"><span class="at">الخدمات اللوجستية</span><span
+          class="et">Services</span></a>
+      <a href="#about" onclick="go(event,'#about')"><span class="at">من نحن</span><span class="et">About Us</span></a>
+      <a href="#contact" onclick="go(event,'#contact')"><span class="at">تواصل معنا</span><span
+          class="et">Contact</span></a>
+      <button class="lang-btn" onclick="toggleLang()">AR</button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- HOME -->
+  <section id="home">
+    <div class="hero-video-wrap">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="videos/WhatsApp Video 2026-06-19 at 23.58.52.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-body">
+      <div class="hero-pill rv">
+        <div class="hero-pill-dot"></div>
+        <span class="at">حلول سلاسل الإمداد العالمية المتكاملة</span>
+        <span class="et">Integrated Global Supply Chain Solutions</span>
+      </div>
+      <h1 class="hero-h1 rv d1">
+        <span class="at">لوجستيات عالمية<br>تدار <span class="hl">بدقة واحترافية</span></span>
+        <span class="et">Precision Logistics<br>Driven By <span class="hl">Global Trust</span></span>
+      </h1>
+      <p class="hero-p rv d2">
+        <span class="at">نقدم حلولاً لوجستية متطورة تشمل الشحن الدولي، التخزين الذكي، وإدارة سلاسل الإمداد لضمان وصول أعمالكم إلى آفاق عالمية.</span>
+        <span class="et">Delivering advanced logistics through global freight, smart warehousing, and supply chain orchestration to propel your business forward.</span>
+      </p>
+      <div class="hero-btns rv d3">
+        <a href="#services" class="btn-g" onclick="go(event,'#services')">
+          <span class="at">خدماتنا اللوجستية</span><span class="et">Our Solutions</span>
+        </a>
+        <a href="#contact" class="btn-w" onclick="go(event,'#contact')">
+          <span class="at">اطلب عرض سعر</span><span class="et">Get a Quote</span>
+        </a>
+      </div>
+    </div>
+    <div class="stats-row rv d4">
+      <div class="stat-col">
+        <div class="stat-n">+2,500</div>
+        <div class="stat-l at">مشروع مكتمل</div>
+        <div class="stat-l et">Successful Projects</div>
+      </div>
+      <div class="stat-col">
+        <div class="stat-n">+120</div>
+        <div class="stat-l at">دولة وشريك عالمي</div>
+        <div class="stat-l et">Global Operations</div>
+      </div>
+      <div class="stat-col">
+        <div class="stat-n">2014</div>
+        <div class="stat-l at">منذ عام التأسيس</div>
+        <div class="stat-l et">Established Since</div>
+      </div>
+      <div class="stat-col">
+        <div class="stat-n">99.9%</div>
+        <div class="stat-l at">دقة في المواعيد</div>
+        <div class="stat-l et">On-Time Reliability</div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="s-arrow"></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="sec-head">
+      <div class="sec-tag rv"><span class="at">حلولنا اللوجستية</span><span class="et">Our Expertise</span></div>
+      <h2 class="sec-title rv d1"><span class="at">خدمات شاملة وعالمية</span><span class="et">Core Logistics Services</span></h2>
+      <p class="sec-sub rv d2">
+        <span class="at">حلول متكاملة مصممة بدقة لتلبية تطلعاتكم في نقل وتخزين وتبسيط سلاسل الإمداد العالمية.</span>
+        <span class="et">Tailored end-to-end solutions designed to streamline your global shipping, storage, and supply chain operations.</span>
+      </p>
+    </div>
+    <div class="srv-grid">
+      <!-- Air Freight -->
+      <div class="srv-card rv d1">
+        <div class="srv-img">
+          <img src="images/air-freight-premium.png" alt="Strategic Air Freight">
+          <div class="srv-img-overlay"></div>
+        </div>
+        <div class="srv-body">
+          <div class="srv-num">01</div>
+          <div class="srv-name at">حلول النقل الجوي الاستراتيجية</div>
+          <div class="srv-name et">Strategic Air Freight Solutions</div>
+          <div class="srv-desc at">شحن جوي متكامل يشمل الشحن السريع، الرحلات المستأجرة (Charter)، ونقل البضائع الحساسة والمبردة بأعلى معايير الأمان العالمية.</div>
+          <div class="srv-desc et">Premium air cargo services including express, full-charter flights, and temperature-controlled logistics for perishables and pharma.</div>
+          <div class="srv-tags">
+            <span class="srv-tag at">شحن سريع</span><span class="srv-tag et">Air Express</span>
+            <span class="srv-tag at">رحلات خاصة</span><span class="srv-tag et">Charter Flights</span>
+            <span class="srv-tag at">معايير IATA</span><span class="srv-tag et">IATA Std</span>
+          </div>
+        </div>
+      </div>
+      <!-- Warehousing -->
+      <div class="srv-card rv d2">
+        <div class="srv-img">
+          <img src="images/WhatsApp Image 2026-06-19 at 23.52.32 (2).jpeg" alt="Warehousing">
+          <div class="srv-img-overlay"></div>
+        </div>
+        <div class="srv-body">
+          <div class="srv-num">02</div>
+          <div class="srv-name at">التخزين وإدارة المخزون</div>
+          <div class="srv-name et">Warehousing & Storage</div>
+          <div class="srv-desc at">مساحات تخزين آمنة وحلول 3PL متطورة لإدارة المخزون بكفاءة عالية وتوزيع دقيق.</div>
+          <div class="srv-desc et">Secure warehousing and advanced 3PL solutions for efficient inventory management and precise distribution.</div>
+          <div class="srv-tags">
+            <span class="srv-tag at">إدارة ذكية</span><span class="srv-tag et">Smart Inventory</span>
+            <span class="srv-tag at">آمن</span><span class="srv-tag et">Optimized</span>
+          </div>
+        </div>
+      </div>
+      <!-- Supply Chain -->
+      <div class="srv-card rv d3">
+        <div class="srv-img">
+          <img src="images/WhatsApp Image 2026-06-19 at 23.52.26.jpeg" alt="Supply Chain Management">
+          <div class="srv-img-overlay"></div>
+        </div>
+        <div class="srv-body">
+          <div class="srv-num">03</div>
+          <div class="srv-name at">إدارة سلاسل الإمداد</div>
+          <div class="srv-name et">Supply Chain Management</div>
+          <div class="srv-desc at">تخطيط وتنسيق العمليات اللوجستية لتقليل التكاليف وتحسين كفاءة التدفق من المصدر للمستهلك.</div>
+          <div class="srv-desc et">End-to-end orchestration of logistics flows to minimize costs and maximize throughput efficiency.</div>
+          <div class="srv-tags">
+            <span class="srv-tag at">تخطيط استراتيجي</span><span class="srv-tag et">Strategic</span>
+            <span class="srv-tag at">كفاءة</span><span class="srv-tag et">Efficiency</span>
+          </div>
+        </div>
+      </div>
+      <!-- Customs -->
+      <div class="srv-card rv d1">
+        <div class="srv-img">
+          <img src="images/WhatsApp Image 2026-06-19 at 23.52.35.jpeg" alt="Customs Clearance">
+          <div class="srv-img-overlay"></div>
+        </div>
+        <div class="srv-body">
+          <div class="srv-num">04</div>
+          <div class="srv-name at">التخليص الجمركي والامتثال</div>
+          <div class="srv-name et">Customs Clearance</div>
+          <div class="srv-desc at">امتثال كامل للوائح التجارة الدولية وتخليص جمركي سريع لضمان سلاسة حركة شحناتكم العابرة للحدود.</div>
+          <div class="srv-desc et">Full compliance with international trade regulations and swift clearance to ensure smooth cross-border flows.</div>
+          <div class="srv-tags">
+            <span class="srv-tag at">امتثال</span><span class="srv-tag et">Compliance</span>
+            <span class="srv-tag at">سريع</span><span class="srv-tag et">Express</span>
+          </div>
+        </div>
+      </div>
+      <!-- Last Mile -->
+      <div class="srv-card rv d2">
+        <div class="srv-img">
+          <img src="images/WhatsApp Image 2026-06-19 at 23.52.25.jpeg" alt="Last-Mile Delivery">
+          <div class="srv-img-overlay"></div>
+        </div>
+        <div class="srv-body">
+          <div class="srv-num">05</div>
+          <div class="srv-name at">توصيل الميل الأخير</div>
+          <div class="srv-name et">Last-Mile Delivery</div>
+          <div class="srv-desc at">حلول توصيل سريعة ودقيقة للمستهلك النهائي مع التركيز على الكفاءة الحضرية وتجربة العميل المميزة.</div>
+          <div class="srv-desc et">Fast and precise B2C/B2B last-mile delivery focused on urban efficiency and exceptional user experience.</div>
+          <div class="srv-tags">
+            <span class="srv-tag at">توصيل محلي</span><span class="srv-tag et">Local Express</span>
+            <span class="srv-tag at">موثوق</span><span class="srv-tag et">Reliable</span>
+          </div>
+        </div>
+      </div>
+      <!-- Fleet & Tracking -->
+      <div class="srv-card rv d3">
+        <div class="srv-img">
+          <img src="images/air-cargo-handling.png" alt="Air Cargo Handling">
+          <div class="srv-img-overlay"></div>
+        </div>
+        <div class="srv-body">
+          <div class="srv-num">06</div>
+          <div class="srv-name at">مناولة الشحنات الجوية</div>
+          <div class="srv-name et">Air Cargo Handling</div>
+          <div class="srv-desc at">نستخدم أحدث تقنيات المناولة والأتمتة في المطارات لضمان سلامة وسرعة تجهيز شحناتكم الجوية.</div>
+          <div class="srv-desc et">Leveraging the latest airport handling and automation tech to ensure your air cargo is processed safely and swiftly.</div>
+          <div class="srv-tags">
+            <span class="srv-tag at">أتمتة</span><span class="srv-tag et">Automation</span>
+            <span class="srv-tag at">مناولة ذكية</span><span class="srv-tag et">Smart Handling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="exp-bg"></div>
+    <div class="exp-overlay"></div>
+    <div class="exp-inner">
+      <div class="exp-left">
+        <div class="sec-tag rv at">سجل الإنجازات</div>
+        <div class="sec-tag rv et">Our Heritage</div>
+        <h2 class="sec-title rv d1 at">خبرة لوجستية منذ عام 2014</h2>
+        <h2 class="sec-title rv d1 et">Logistics Mastery Since 2014</h2>
+        <p class="sec-sub rv d2 at">منذ انطلاقتنا في عام 2014، التزمنا بتقديم أرقى المعايير العالمية في اللوجستيات، متجاوزين التوقعات عبر شبكة متكاملة تغطي 120 دولة.</p>
+        <p class="sec-sub rv d2 et">Since our inception in 2014, we have maintained world-class standards in logistics excellence, consistently exceeding expectations across an integrated network spanning 120+ countries.</p>
+      </div>
+      <div class="exp-nums">
+        <div class="exp-box rvs d1">
+          <div class="en">2014</div>
+          <div class="el at">سنة التأسيس والريادة</div>
+          <div class="el et">Established Since</div>
+        </div>
+        <div class="exp-box rvs d2">
+          <div class="en">+120</div>
+          <div class="el at">نقطة وصول عالمية</div>
+          <div class="el et">Global Transit Points</div>
+        </div>
+        <div class="exp-box rvs d3">
+          <div class="en">+2,500</div>
+          <div class="el at">شريك تجاري استراتيجي</div>
+          <div class="el et">Strategic Enterprise Partners</div>
+        </div>
+        <div class="exp-box rvs d4">
+          <div class="en">+5,000</div>
+          <div class="el at">رحلة شحن جوي سنوياً</div>
+          <div class="el et">Annual Air Cargo Flights</div>
+        </div>
+        <div class="exp-box rvs d3">
+          <div class="en">99.9%</div>
+          <div class="el at">موثوقية الجدول الزمني</div>
+          <div class="el et">Schedule Reliability</div>
+        </div>
+        <div class="exp-box rvs d4">
+          <div class="en">24/7</div>
+          <div class="el at">عمليات لوجستية عالمية</div>
+          <div class="el et">Global Operations Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section id="values">
+    <div class="sec-head">
+      <div class="sec-tag rv"><span class="at">ثقافة الأداء</span><span class="et">Performance Culture</span></div>
+      <h2 class="sec-title rv d1"><span class="at">قيمنا الجوهرية</span><span class="et">Core Values</span></h2>
+      <p class="sec-sub rv d2">
+        <span class="at">المبادئ التي تقود كل خطوة في رحلة شحنتكم من المصدر إلى الوجهة النهائية.</span>
+        <span class="et">The guiding principles steering every phase of your shipment's journey from origin to final destination.</span>
+      </p>
+    </div>
+    <div class="val-grid">
+      <div class="val-card rv d1">
+        <div class="val-icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+        </div>
+        <div class="val-name at">النزاهة والامتثال</div>
+        <div class="val-name et">Integrity & Compliance</div>
+        <div class="val-desc at">نلتزم بأعلى معايير الحوكمة والامتثال للقوانين التجارية الدولية لضمان أمان أعمالكم.</div>
+        <div class="val-desc et">Upholding the highest benchmarks of governance and global trade compliance to safeguard your business.</div>
+      </div>
+      <div class="val-card rv d2">
+        <div class="val-icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+        </div>
+        <div class="val-name at">الرشاقة التشغيلية</div>
+        <div class="val-name et">Operational Agility</div>
+        <div class="val-desc at">نتمتع بالمرونة اللازمة للتكيف مع متغيرات السوق وتقديم حلول سريعة في الظروف المعقدة.</div>
+        <div class="val-desc et">Maintaining the flexibility needed to adapt to market shifts and deliver swift solutions in complex scenarios.</div>
+      </div>
+      <div class="val-card rv d3">
+        <div class="val-icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+          </svg>
+        </div>
+        <div class="val-name at">الاتصال العالمي</div>
+        <div class="val-name et">Global Connectivity</div>
+        <div class="val-desc at">نمتلك بنية تحتية تربط القارات، مما يجعل العالم أصغر وأعمالكم أكثر توسعاً.</div>
+        <div class="val-desc et">Leveraging infrastructure that links continents, making the world smaller and your business more scalable.</div>
+      </div>
+      <div class="val-card rv d4">
+        <div class="val-icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        </div>
+        <div class="val-name at">التميز في الخدمة</div>
+        <div class="val-name et">Service Excellence</div>
+        <div class="val-desc at">نسعى دوماً للارتقاء بجودة الخدمة عبر تبني أحدث تقنيات اللوجستيات ومعايير ISO العالمية.</div>
+        <div class="val-desc et">Continuously elevating service quality by adopting cutting-edge logistics tech and ISO standards.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET A QUOTE -->
+  <section id="quote">
+    <div class="quote-inner">
+      <div class="quote-left">
+        <div class="sec-tag rv at">الاستشارات اللوجستية</div>
+        <div class="sec-tag rv et">Logistics Consulting</div>
+        <h2 class="sec-title rv d1 at">صمم مسار شحنتك اليوم</h2>
+        <h2 class="sec-title rv d1 et">Architect Your Cargo Path</h2>
+        <p class="sec-sub rv d2 at">فريق الخبراء لدينا جاهز لتقديم دراسة تخصصية وتحليل للتكاليف بما يتناسب مع حجم أعمالكم.</p>
+        <p class="sec-sub rv d2 et">Our expert consultants are ready to provide specialized analysis and cost optimization tailored to your operational scale.</p>
+        <ul class="perks rv d3">
+          <li>
+            <div class="perk-dot"></div><span class="at">تحليل متكامل لسلاسل الإمداد</span><span class="et">Comprehensive Supply Chain Audit</span>
+          </li>
+          <li>
+            <div class="perk-dot"></div><span class="at">هيكل تسعير تنافسي وشفاف</span><span class="et">Transparent Competitive Pricing</span>
+          </li>
+          <li>
+            <div class="perk-dot"></div><span class="at">حلول شحن مخصصة (LCL/FCL)</span><span class="et">Tailored Shipping Solutions (LCL/FCL)</span>
+          </li>
+          <li>
+            <div class="perk-dot"></div><span class="at">دعم فني متخصص على مدار الساعة</span><span class="et">24/7 Dedicated Logistics Support</span>
+          </li>
+          <li>
+            <div class="perk-dot"></div><span class="at">إدارة المخاطر والخدمات التأمينية</span><span class="et">Risk Management & Transit Insurance</span>
+          </li>
+        </ul>
+      </div>
+      <div class="q-form rvr d1">
+        <div class="q-form-title at">طلب عرض سعر مهني</div>
+        <div class="q-form-title et">Request Professional Quote</div>
+        <div class="fg-row">
+          <div class="fg"><label class="at">الاسم الكامل</label><label class="et">Full Name</label><input type="text" placeholder="John Doe">
+          </div>
+          <div class="fg"><label class="at">الشركة</label><label class="et">Company</label><input type="text" placeholder="Corp Name"></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label class="at">البريد الإلكتروني</label><label class="et">Email Address</label><input type="email" placeholder="email@domain.com">
+          </div>
+          <div class="fg"><label class="at">الهاتف</label><label class="et">Phone Number</label><input type="tel" placeholder="+XXX"></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg">
+            <label class="at">نوع اللوجستيات</label><label class="et">Logistics Type</label>
+            <select>
+              <option class="at">شحن دولي</option>
+              <option class="et">International Freight</option>
+              <option class="at">إدارة مستودعات</option>
+              <option class="et">Warehousing</option>
+              <option class="at">توزيع الميل الأخير</option>
+              <option class="et">Last-Mile Distribution</option>
+            </select>
+          </div>
+          <div class="fg"><label class="at">الحجم/الوزن</label><label class="et">Volume / Weight</label><input
+              type="text" placeholder="kg / CBM"></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label class="at">نقطة الانطلاق</label><label class="et">Origin City</label><input type="text" placeholder="Origin">
+          </div>
+          <div class="fg"><label class="at">نقطة الوصول</label><label class="et">Destination City</label><input type="text" placeholder="Destination">
+          </div>
+        </div>
+        <div class="fg"><label class="at">ملاحظات إضافية</label><label class="et">Additional Notes</label><textarea placeholder="Cargo details..."></textarea></div>
+        <button class="qsub"><span class="at">إرسال الطلب</span><span class="et">Submit Quote Request</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-wrap">
+      <div class="about-img-side rvl">
+        <img src="images/WhatsApp Image 2026-06-19 at 23.52.26.jpeg" alt="AGL Logistics Infrastructure" class="about-img">
+        <div class="about-stamp">
+          <div class="big">2014</div>
+          <div class="sm at">منذ التأسيس</div>
+          <div class="sm et">Established Since</div>
+        </div>
+      </div>
+      <div class="about-txt">
+        <div class="sec-head">
+          <div class="sec-tag rv at">من نحن</div>
+          <div class="sec-tag rv et">Corporate Profile</div>
+          <h2 class="sec-title rv d1 at">شريككم الاستراتيجي في سلاسل الإمداد</h2>
+          <h2 class="sec-title rv d1 et">Your Strategic Supply Chain Ally</h2>
+          <p class="sec-sub rv d2 at">تعد AGL (Advanced Global Logistics) رائدة في تقديم الحلول اللوجستية المبتكرة. منذ تأسيسنا، وضعنا الموثوقية التكنولوجية والخبرة الميدانية في قلب عملياتنا، مما مكننا من إدارة أعقد سلاسل الإمداد بكل سلاسة.</p>
+          <p class="sec-sub rv d2 et">AGL (Advanced Global Logistics) stands as a beacon of innovation in the logistics sector. Since our founding, we have integrated technological reliability and field expertise to manage the most complex supply chains seamlessly.</p>
+          
+          <!-- Large Professional Name -->
+          <div class="rv d3" style="margin-top: 40px;">
+            <div class="at" style="font-size: 2.2rem; font-weight: 900; color: var(--primary); line-height: 1.2; margin-bottom: 5px;">أ/ أيمن أبوسعدة</div>
+            <div class="et" style="font-size: 2rem; font-weight: 900; color: var(--primary); line-height: 1.2; margin-bottom: 5px; font-family: 'Inter', sans-serif;">Mr. Ayman Abuseada</div>
+            <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent); letter-spacing: 2px; text-transform: uppercase;">
+              <span class="at">رئيس مجلس الإدارة</span>
+              <span class="et">Chairman</span>
+            </div>
+          </div>
+        </div>
+        <ul class="checks rv d4">
+          <li>
+            <div class="ck"><svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg></div>
+            <span class="at">كوادر احترافية بخبرة واسعة وممتدة في الأسواق العالمية</span>
+            <span class="et">Professional workforce with deep and extensive global market expertise</span>
+          </li>
+          <li>
+            <div class="ck"><svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg></div>
+            <span class="at">شبكة لوجستية ذكية تغطي أكثر من 120 دولة</span>
+            <span class="et">Intelligence-driven logistics network covering 120+ nations</span>
+          </li>
+          <li>
+            <div class="ck"><svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg></div>
+            <span class="at">حلول هندسية مخصصة لتحسين تدفق البضائع والتكاليف</span>
+            <span class="et">Engineered daily solutions to optimize cargo flow and operational spend</span>
+          </li>
+          <li>
+            <div class="ck"><svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg></div>
+            <span class="at">أنظمة تتبع وذكاء اصطناعي لضمان الشفافية الكاملة</span>
+            <span class="et">AI-powered tracking systems Ensuring full end-to-end transparency</span>
+          </li>
+          <li>
+            <div class="ck"><svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg></div>
+            <span class="at">التزام صارم بمعايير ISO والامتثال التنظيمي الدولي</span>
+            <span class="et">Strict adherence to ISO standards and international regulatory frameworks</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="sec-head">
+      <div class="sec-tag rv"><span class="at">اتصل بنا</span><span class="et">Global Support</span></div>
+      <h2 class="sec-title rv d1"><span class="at">تواصل مع خبرائنا</span><span class="et">Expert Solutions Desk</span></h2>
+      <p class="sec-sub rv d2">
+        <span class="at">فريقنا متاح لتقديم الدعم الفني والاستشارات اللوجستية المتطورة على مدار الساعة.</span>
+        <span class="et">Our strategic advisory team is available for technical support and complex logistics consultations 24/7.</span>
+      </p>
+    </div>
+    <div class="contact-wrap">
+      <div class="rvl">
+        <div class="ci">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="at">المقر الرئيسي</h4>
+            <h4 class="et">Global HQ</h4>
+            <p class="at">13 عمارات العبور ، طريق صلاح سالم ، القاهرة - مصر</p>
+            <p class="et">13 El Obour Building, Salah Salem St., Cairo - Egypt</p>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.28 16.92z" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="at">أرقام التواصل</h4>
+            <h4 class="et">Contact Numbers</h4>
+            <p dir="ltr">+20 100 8800025</p>
+            <p dir="ltr">+20 2 2261 1102</p>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="at">البريد المؤسسي</h4>
+            <h4 class="et">Corporate Email</h4>
+            <p>Agl-logistics@hotmail.com</p>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="at">ساعات العمل</h4>
+            <h4 class="et">Availability</h4>
+            <p class="at">الأحد – الخميس، 8 ص – 5 م (دعم 24/7)</p>
+            <p class="et">Sun – Thu, 8 AM – 5 PM (24/7 Ops Support)</p>
+          </div>
+        </div>
+      </div>
+      <div class="c-form rvr">
+        <div class="cf-row">
+          <div class="cf-g"><label class="at">الاسم الكامل</label><label class="et">Full Name</label><input type="text" placeholder="Your Name">
+          </div>
+          <div class="cf-g"><label class="at">البريد الإلكتروني</label><label class="et">Work Email</label><input
+              type="email" placeholder="email@corp.com"></div>
+        </div>
+        <div class="cf-g"><label class="at">رقم التواصل</label><label class="et">Business Phone</label><input type="tel" placeholder="+XXX">
+        </div>
+        <div class="cf-g">
+          <label class="at">الخدمة المطلوبة</label><label class="et">Inquiry Type</label>
+          <select>
+            <option class="at">تطوير سلاسل الإمداد</option>
+            <option class="et">Supply Chain Optimization</option>
+            <option class="at">شحن دولي</option>
+            <option class="et">Global Freight</option>
+            <option class="at">خدمات الجمارك</option>
+            <option class="et">Customs Advisory</option>
+            <option class="at">أخرى</option>
+            <option class="et">General Inquiry</option>
+          </select>
+        </div>
+        <div class="cf-g"><label class="at">كيف يمكننا مساعدتكم؟</label><label class="et">How can we help?</label><textarea placeholder="Project brief..."></textarea></div>
+        <button class="csub"><span class="at">إرسال الاستفسار</span><span class="et">Send Inquiry</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <div class="foot-logo">
+          <img src="logo/logo footer.png" alt="AGL - Advanced Global Logistics">
+        </div>
+        <p class="at">شريككم الموثوق في تكنولوجيا النقل وحلول سلاسل الإمداد العالمية منذ عام 2014.</p>
+        <p class="et">Your trusted gateway to global trade and intelligent supply chain orchestration since 2014.</p>
+        <div class="socials">
+          <a href="#" class="social-link"><svg viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg></a>
+          <a href="#" class="social-link"><svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg></a>
+          <a href="#" class="social-link"><svg viewBox="0 0 24 24">
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+            </svg></a>
+          <a href="#" class="social-link"><svg viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg></a>
+        </div>
+      </div>
+      <div>
+        <h5 class="at">روابط التنقل</h5>
+        <h5 class="et">Navigation</h5>
+        <ul>
+          <li><a href="#home" onclick="go(event,'#home')"> <span class="at">الرئيسية</span><span
+                class="et">Home</span></a></li>
+          <li><a href="#services" onclick="go(event,'#services')"><span class="at">حلولنا اللوجستية</span><span
+                class="et">Our Solutions</span></a></li>
+          <li><a href="#about" onclick="go(event,'#about')"> <span class="at">الملف المؤسسي</span><span
+                class="et">Corporate Profile</span></a></li>
+          <li><a href="#contact" onclick="go(event,'#contact')"> <span class="at">تواصل معنا</span><span
+                class="et">Support Desk</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="at">التواصل</h5>
+        <h5 class="et">Get In Touch</h5>
+        <ul>
+          <li><a href="tel:+201008800025">+20 100 8800025</a></li>
+          <li><a href="tel:+20222611102">+20 2 2261 1102</a></li>
+          <li><a href="mailto:Agl-logistics@hotmail.com">Agl-logistics@hotmail.com</a></li>
+          <li><span style="color:rgba(255,255,255,.6);font-size:.84rem;" class="at">13 عمارات العبور، طريق صلاح سالم، القاهرة</span><span
+              style="color:rgba(255,255,255,.6);font-size:.84rem;" class="et">13 El Obour Bldg, Salah Salem St, Cairo</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="at">© 2026 AGL – Advanced Global Logistics. جميع الحقوق محفوظة.</span>
+      <span class="et">© 2026 AGL – Advanced Global Logistics. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const prog = document.getElementById('prog');
+
+    window.addEventListener('scroll', () => {
+      const st = window.scrollY;
+      const dh = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (st / dh * 100) + '%';
+      nav.classList.toggle('scrolled', st > 40);
+      highlightNav();
+    });
+
+    function highlightNav() {
+      const secs = document.querySelectorAll('section[id]');
+      const links = document.querySelectorAll('.nav-links a');
+      let cur = '';
+      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+    }
+
+    let busy = false;
+    function go(e, target) {
+      e.preventDefault();
+      if (busy) return;
+      const el = document.querySelector(target);
+      if (!el) return;
+      busy = true;
+      const c = document.getElementById('curtain');
+      c.classList.remove('leaving');
+      c.classList.add('going');
+      setTimeout(() => {
+        window.scrollTo({ top: Math.max(0, el.offsetTop - 100), behavior: 'instant' });
+        c.classList.remove('going');
+        c.classList.add('leaving');
+        setTimeout(() => { c.classList.remove('leaving'); busy = false; }, 480);
+      }, 460);
+    }
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('on'); });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.rv,.rvl,.rvr,.rvs').forEach(el => obs.observe(el));
+
+    let isEn = true;
+    function toggleLang() {
+      isEn = !isEn;
+      const h = document.documentElement;
+      const btn = document.querySelector('.lang-btn');
+      if (isEn) { h.classList.add('en'); h.setAttribute('lang', 'en'); h.setAttribute('dir', 'ltr'); btn.textContent = 'AR'; }
+      else { h.classList.remove('en'); h.setAttribute('lang', 'ar'); h.setAttribute('dir', 'rtl'); btn.textContent = 'EN'; }
+    }
+
+    // Ensure base state
+    if (isEn) {
+      const h = document.documentElement;
+      h.classList.add('en'); h.setAttribute('lang', 'en'); h.setAttribute('dir', 'ltr');
+      document.querySelector('.lang-btn').textContent = 'AR';
+    }
+
+    // ===== HAMBURGER MENU =====
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function toggleMenu() {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+      navOverlay.classList.toggle('show');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    }
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('open');
+      navOverlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', toggleMenu);
+    navOverlay.addEventListener('click', closeMenu);
+    // Close menu when clicking nav links
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', () => { if (window.innerWidth > 1024) closeMenu(); });
+  </script>
+</body>
+
+</html>
